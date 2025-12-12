@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  gmail-monitor:
+    build: .
+    container_name: gmail-telegram-monitor
+    restart: unless-stopped
+    volumes:
+      # Mount credentials from host
+      - ./.env:/app/.env:ro
+      - ./credentials.json:/app/credentials.json:ro
+      - ./token.json:/app/token.json:rw
+    environment:
+      - TZ=America/Sao_Paulo
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
