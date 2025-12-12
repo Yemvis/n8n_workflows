@@ -24,8 +24,8 @@ async def main():
     print("Authenticating with Gmail...")
     monitor.authenticate_gmail()
 
-    # Start monitoring (checking every 30 seconds)
-    await monitor.monitor_new_emails(interval=30)
+    # Start monitoring (checking every 60 seconds / 1 minute)
+    await monitor.monitor_new_emails(interval=60)
 
 
 if __name__ == '__main__':
