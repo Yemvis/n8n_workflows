@@ -5,15 +5,23 @@ echo "🤖 Setting up Autonomous Self-Healing with Claude AI"
 echo "===================================================="
 echo ""
 
+# Load .env file
+if [ -f ".env" ]; then
+    export $(cat .env | grep -v '^#' | xargs)
+fi
+
 # Check if Anthropic API key is set
 if [ -z "$ANTHROPIC_API_KEY" ]; then
-    echo "Please add your Anthropic API key to .env file:"
+    echo "❌ Error: ANTHROPIC_API_KEY not found in .env file"
     echo ""
+    echo "Please add your Anthropic API key to .env file:"
     echo "ANTHROPIC_API_KEY=your_api_key_here"
     echo ""
     echo "Get your key at: https://console.anthropic.com/"
     exit 1
 fi
+
+echo "✓ API key found in .env"
 
 # Install Python dependencies
 echo "Installing dependencies..."
